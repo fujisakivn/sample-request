@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FUJISAKI TEXTILE VIETNAM | Sample Request</title>
+<style>
+:root{--bg:#eef1f5;--card:#fff;--text:#1f2937;--mut:#6b7280;--navy:#063066;--gold:#E7B76C;--line:#d5dbe4;--field:#f4f7fb;--btn-text:#E7B76C;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0f1722;--card:#18222f;--text:#e5e9f0;--mut:#9aa6b6;--navy:#9db8e6;--line:#2c3a4d;--field:#111a26}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0f1722;--card:#18222f;--text:#e5e9f0;--mut:#9aa6b6;--navy:#9db8e6;--line:#2c3a4d;--field:#111a26}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Hiragino Kaku Gothic ProN','Hiragino Sans',Meiryo,'Yu Gothic',Arial,Helvetica,sans-serif;line-height:1.7;font-size:15px}
+.wrap{max-width:640px;margin:0 auto;padding:16px}
+.head{background:#063066;color:#E7B76C;padding:22px 24px;border-radius:8px 8px 0 0}
+.head b{letter-spacing:.5px;font-size:13px;display:block}
+.head h1{margin:6px 0 0;font-size:20px;line-height:1.4;color:#fff}
+.lang{display:flex;gap:6px;justify-content:flex-end;margin:0 0 10px}
+.lang button{border:1px solid var(--line);background:var(--card);color:var(--text);padding:4px 12px;border-radius:14px;cursor:pointer;font-size:13px}
+.lang button.on{background:#063066;color:#E7B76C;border-color:#063066}
+.card{background:var(--card);padding:22px 24px;border-radius:0 0 8px 8px;border-left:4px solid var(--gold)}
+h2{font-size:16px;color:var(--navy);border-bottom:2px solid var(--navy);padding-bottom:6px;margin:26px 0 12px}
+h2:first-of-type{margin-top:4px}
+label{display:block;font-size:13px;font-weight:bold;color:var(--navy);margin:12px 0 4px}
+.req::after{content:" *";color:#c0392b}
+input[type=text],input[type=email],input[type=tel],textarea{width:100%;box-sizing:border-box;padding:10px;border:1px solid var(--line);border-radius:4px;background:var(--field);color:var(--text);font:inherit;font-size:14px}
+textarea{min-height:90px;resize:vertical}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;margin:6px 0;background:var(--field);border-left:3px solid var(--gold);font-size:14px;cursor:pointer}
+.opt input{margin-top:5px}
+.opt small{color:var(--mut);display:block}
+.go{display:block;width:100%;margin-top:22px;padding:14px;border:0;border-radius:3px;background:#063066;color:#E7B76C;font:bold 15px inherit;font-family:inherit;cursor:pointer}
+.msg{margin-top:12px;font-size:13px;color:var(--mut)}
+.err{color:#c0392b}
+.foot{text-align:center;color:var(--mut);font-size:12px;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="lang"><button data-l="ja" class="on">日本語</button><button data-l="en">English</button><button data-l="vi">Tiếng Việt</button></div>
+<div class="head"><b>FUJISAKI TEXTILE VIETNAM CO., LTD.</b><h1 data-i="title"></h1></div>
+<div class="card">
+<p data-i="intro" style="margin:0 0 6px"></p>
+
+<h2 data-i="h_fab"></h2>
+<div id="fabs"></div>
+
+<h2 data-i="h_type"></h2>
+<label class="opt"><input type="checkbox" name="type" value="hanger" checked><span data-i="t_hanger"></span></label>
+<label class="opt"><input type="checkbox" name="type" value="garment"><span data-i="t_garment"></span></label>
+
+<h2 data-i="h_you"></h2>
+<label class="req" data-i="f_company"></label><input type="text" id="company" autocomplete="organization">
+<label class="req" data-i="f_name"></label><input type="text" id="name" autocomplete="name">
+<label data-i="f_title"></label><input type="text" id="title" autocomplete="organization-title">
+<label class="req" data-i="f_email"></label><input type="email" id="email" autocomplete="email">
+<label data-i="f_tel"></label><input type="tel" id="tel" autocomplete="tel">
+<label data-i="f_addr"></label><textarea id="addr" style="min-height:64px"></textarea>
+<label data-i="f_note"></label><textarea id="note"></textarea>
+
+<button class="go" id="go" data-i="send"></button>
+<div class="msg" id="msg"></div>
+</div>
+<div class="foot">© FUJISAKI TEXTILE VIETNAM CO., LTD.</div>
+</div>
+<script>
+// Set the address that should receive requests:
+var TO = "REPLACE_RECEIVER_EMAIL";
+var FABS = [["3813","Organic 麻OG Madras Check","Cotton 86% / Linen 14%"],["3816","Organic Cotton × Rayon Check","Cotton 55% / Rayon 45%"],["3817","ORGANIC MINI CHECK","Cotton 100%"],["3818","ORGANIC DOBBY CHECK","Cotton 100%"],["RMD5007","Lightweight Cotton-Polyester Blend / 軽量コットン混","Cotton 47% / Polyester 53%"]];
+var T = {
+ja:{title:"サンプル・資料請求フォーム",intro:"ご希望の素材とお客様情報をご入力ください。「送信」を押すと、メールが作成されます。",h_fab:"ご希望の品番（複数選択可）",h_type:"ご希望のサンプル",t_hanger:"ハンガーサンプル（スワッチ）",t_garment:"着分生地",h_you:"お客様情報",f_company:"会社名",f_name:"ご担当者氏名",f_title:"役職",f_email:"メールアドレス",f_tel:"電話番号",f_addr:"送付先住所（サンプル送付先）",f_note:"ご質問・ご要望",send:"送信（メールを作成）",e_fab:"品番を1つ以上選択してください。",e_req:"必須項目をご入力ください。",ok:"メールソフトが開きます。開かない場合は、下記の宛先へ直接ご連絡ください：",subj:"サンプル・資料請求",l:["会社名","ご担当者","役職","メール","電話","送付先","希望品番","希望サンプル","ご質問・ご要望"],ty:{hanger:"ハンガーサンプル",garment:"着分生地"}},
+en:{title:"Sample and Information Request Form",intro:"Select the fabrics you are interested in and enter your details. Pressing Send will prepare an email.",h_fab:"Fabrics of interest (multiple choice)",h_type:"Sample type",t_hanger:"Hanger sample (swatch)",t_garment:"Garment-length fabric",h_you:"Your details",f_company:"Company name",f_name:"Contact person",f_title:"Job title",f_email:"Email address",f_tel:"Phone number",f_addr:"Shipping address for samples",f_note:"Questions or requests",send:"Send (prepare email)",e_fab:"Please select at least one fabric.",e_req:"Please fill in the required fields.",ok:"Your email app should open. If it does not, please contact us directly at:",subj:"Sample Request",l:["Company","Contact","Title","Email","Phone","Address","Fabrics","Sample type","Message"],ty:{hanger:"Hanger sample",garment:"Garment-length fabric"}},
+vi:{title:"Biểu mẫu yêu cầu mẫu và thông tin",intro:"Vui lòng chọn loại vải quan tâm và nhập thông tin. Khi bấm Gửi, một email sẽ được soạn sẵn.",h_fab:"Mã vải quan tâm (chọn nhiều)",h_type:"Loại mẫu",t_hanger:"Mẫu hanger (swatch)",t_garment:"Vải đủ may một sản phẩm mẫu",h_you:"Thông tin của quý khách",f_company:"Tên công ty",f_name:"Người liên hệ",f_title:"Chức danh",f_email:"Địa chỉ email",f_tel:"Số điện thoại",f_addr:"Địa chỉ nhận mẫu",f_note:"Câu hỏi hoặc yêu cầu",send:"Gửi (soạn email)",e_fab:"Vui lòng chọn ít nhất một mã vải.",e_req:"Vui lòng điền các mục bắt buộc.",ok:"Ứng dụng email sẽ mở ra. Nếu không, vui lòng liên hệ trực tiếp theo địa chỉ:",subj:"Yêu cầu mẫu vải",l:["Công ty","Người liên hệ","Chức danh","Email","Điện thoại","Địa chỉ","Mã vải","Loại mẫu","Nội dung"],ty:{hanger:"Mẫu hanger",garment:"Vải đủ may một sản phẩm"}}
+};
+var lang="ja";
+function $(i){return document.getElementById(i)}
+function render(){
+  var t=T[lang];document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i]").forEach(function(e){e.textContent=t[e.getAttribute("data-i")]});
+  document.querySelectorAll(".lang button").forEach(function(b){b.className=b.dataset.l===lang?"on":""});
+  $("msg").textContent="";
+}
+function build(){
+  var h="";
+  FABS.forEach(function(f){h+='<label class="opt"><input type="checkbox" name="fab" value="'+f[0]+'"><span><b>'+f[0]+'</b> '+f[1]+'<small>'+f[2]+'</small></span></label>'});
+  $("fabs").innerHTML=h;
+}
+document.querySelectorAll(".lang button").forEach(function(b){b.onclick=function(){lang=b.dataset.l;render()}});
+$("go").onclick=function(){
+  var t=T[lang],m=$("msg");m.className="msg";
+  var fabs=[].map.call(document.querySelectorAll("input[name=fab]:checked"),function(x){return x.value});
+  var types=[].map.call(document.querySelectorAll("input[name=type]:checked"),function(x){return t.ty[x.value]});
+  if(!fabs.length){m.className="msg err";m.textContent=t.e_fab;return}
+  var c=$("company").value.trim(),n=$("name").value.trim(),e=$("email").value.trim();
+  if(!c||!n||!/^\S+@\S+\.\S+$/.test(e)){m.className="msg err";m.textContent=t.e_req;return}
+  var L=t.l,body=[L[0]+": "+c,L[1]+": "+n,L[2]+": "+$("title").value.trim(),L[3]+": "+e,L[4]+": "+$("tel").value.trim(),L[5]+": "+$("addr").value.trim(),"",L[6]+": "+fabs.join(", "),L[7]+": "+types.join(", "),"",L[8]+":",$("note").value.trim()].join("\n");
+  m.textContent=t.ok+" "+TO;
+  location.href="mailto:"+TO+"?subject="+encodeURIComponent(t.subj+" - "+c)+"&body="+encodeURIComponent(body);
+};
+build();render();
+</script>
+</body>
+</html>
